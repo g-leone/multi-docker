@@ -1,0 +1,24 @@
+sudo: required
+language: generic
+
+services:
+  - docker
+
+before_install:
+  - docker build -t gleone/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true gleone/react-test npm test
+
+after_success:
+  - docker build -t gleone/multi-client ./client
+  - docker build -t gleone/multi-nginx ./nginx
+  - docker build -t gleone/multi-server ./server
+  - docker build -t gleone/multi-worker ./worker
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  # Take those images and push them to docker hub
+  - docker push gleone/multi-client
+  - docker push gleone/multi-nginx
+  - docker push gleone/multi-server
+  - docker push stephgleoneengrider/multi-worker
