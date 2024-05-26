@@ -21,4 +21,4 @@ after_success:
   - docker push gleone/multi-client
   - docker push gleone/multi-nginx
   - docker push gleone/multi-server
-  - docker push stephgleoneengrider/multi-worker
+  - docker push gleone/multi-worker
