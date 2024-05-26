@@ -5,20 +5,20 @@ services:
   - docker
 
 before_install:
-  - docker build -t gleone/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t gleone199/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true gleone/react-test npm test
+  - docker run -e CI=true gleone199/react-test npm test
 
 after_success:
-  - docker build -t gleone/multi-client ./client
-  - docker build -t gleone/multi-nginx ./nginx
-  - docker build -t gleone/multi-server ./server
-  - docker build -t gleone/multi-worker ./worker
+  - docker build -t gleone199/multi-client ./client
+  - docker build -t gleone199/multi-nginx ./nginx
+  - docker build -t gleone199/multi-server ./server
+  - docker build -t gleone199/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push gleone/multi-client
-  - docker push gleone/multi-nginx
-  - docker push gleone/multi-server
-  - docker push gleone/multi-worker
+  - docker push gleone199/multi-client
+  - docker push gleone199/multi-nginx
+  - docker push ggleone199leone/multi-server
+  - docker push gleone199/multi-worker
