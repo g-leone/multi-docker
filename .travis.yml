@@ -20,5 +20,5 @@ after_success:
   # Take those images and push them to docker hub
   - docker push gleone199/multi-client
   - docker push gleone199/multi-nginx
-  - docker push ggleone199leone/multi-server
+  - docker push gleone199/multi-server
   - docker push gleone199/multi-worker
